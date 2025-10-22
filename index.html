@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>Guardião Digital - Sua Segurança Online Começa Aqui</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuração Explícita do Tailwind para Dark Mode -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilo para a fonte Inter */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Efeito de gradiente animado para o fundo do hero */
+        .hero-bg {
+            background: linear-gradient(-45deg, #1e3a8a, #3b82f6, #1e40af, #2563eb);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .modal-phishing-hotspot {
+            position: absolute;
+            border: 2px dashed red;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .modal-phishing-hotspot:hover {
+            background-color: rgba(255, 0, 0, 0.3);
+        }
+        /* Adiciona padding ao body para não ficar sob o header fixo */
+        body {
+            padding-top: 80px; /* Altura do header */
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300">
+
+    <!-- ========== HEADER ========== -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-40 transition-colors duration-300 bg-transparent text-white">
+        <nav class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="#inicio" class="text-2xl font-bold flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Guardião Digital
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#modulos" class="hover:text-blue-600 dark:hover:text-blue-200 transition-colors">Módulos</a>
+                <a href="#artigos" class="hover:text-blue-600 dark:hover:text-blue-200 transition-colors">Artigos</a>
+                <a href="#quiz" class="hover:text-blue-600 dark:hover:text-blue-200 transition-colors">Quiz</a>
+                <a href="#ajuda" class="hover:text-blue-600 dark:hover:text-blue-200 transition-colors">Ajuda</a>
+                <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-white/20 transition-colors">
+                    <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon hidden"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                </button>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="p-2 rounded-full hover:bg-white/20 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-800/90 dark:bg-slate-900/90 backdrop-blur-sm">
+            <a href="#modulos" class="block py-3 px-6 text-center hover:bg-white/10">Módulos</a>
+            <a href="#artigos" class="block py-3 px-6 text-center hover:bg-white/10">Artigos</a>
+            <a href="#quiz" class="block py-3 px-6 text-center hover:bg-white/10">Quiz</a>
+            <a href="#contato" class="block py-3 px-6 text-center hover:bg-white/10">Contato</a>
+            <a href="#ajuda" class="block py-3 px-6 text-center hover:bg-white/10">Ajuda</a>
+        </div>
+    </header>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main>
+        <!-- Seção Hero com Carrossel -->
+        <section id="inicio" class="hero-bg text-white relative overflow-hidden -mt-[80px] pt-[80px]">
+            <div id="slider" class="relative w-full h-[450px] md:h-[500px] flex items-center">
+                 <div id="slider-track" class="flex w-full h-full transition-transform duration-700 ease-in-out">
+                    <!-- Slide 1: Fortaleza Pessoal -->
+                    <div class="slide w-full flex-shrink-0">
+                        <div class="container mx-auto px-6 text-center flex flex-col justify-center h-full">
+                            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Crie sua Fortaleza Pessoal.</h1>
+                            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-blue-100">Senhas fortes e verificação em duas etapas são seu escudo. Aprenda a se proteger.</p>
+                            <a href="#modulos" class="bg-white text-blue-700 font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-100 transition-all transform hover:scale-105 self-center">
+                                Fortalecer Minha Segurança
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Slide 2: Detector de Ameaças -->
+                    <div class="slide w-full flex-shrink-0">
+                        <div class="container mx-auto px-6 text-center flex flex-col justify-center h-full">
+                            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Seja um Detector de Ameaças.</h1>
+                            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-blue-100">Phishing e golpes estão por toda parte. Treine seus olhos para identificar os perigos.</p>
+                            <a href="#modulos" class="bg-white text-blue-700 font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-100 transition-all transform hover:scale-105 self-center">
+                                Aprender a Detectar
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Slide 3: Espaço Seguro -->
+                    <div class="slide w-full flex-shrink-0">
+                        <div class="container mx-auto px-6 text-center flex flex-col justify-center h-full">
+                            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Construa um Espaço Seguro.</h1>
+                            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-blue-100">Diga não ao cyberbullying. Saiba como agir e promover um ambiente online mais positivo.</p>
+                            <a href="#modulos" class="bg-white text-blue-700 font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-100 transition-all transform hover:scale-105 self-center">
+                                Saber Mais
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Slide 4: Privacidade de Dados -->
+                    <div class="slide w-full flex-shrink-0">
+                        <div class="container mx-auto px-6 text-center flex flex-col justify-center h-full">
+                            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Sua Privacidade é um Direito.</h1>
+                            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-blue-100">Entenda a LGPD e tome controle dos seus dados. Saiba o que as empresas sabem sobre você.</p>
+                            <a href="#modulos" class="bg-white text-blue-700 font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-100 transition-all transform hover:scale-105 self-center">
+                                Proteger Meus Dados
+                            </a>
+                        </div>
+                    </div>
+                     <!-- Slide 5: Segurança em Wi-Fi -->
+                    <div class="slide w-full flex-shrink-0">
+                        <div class="container mx-auto px-6 text-center flex flex-col justify-center h-full">
+                            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Cuidado com o Wi-Fi Público.</h1>
+                            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-blue-100">Redes abertas podem ser perigosas. Aprenda a navegar com segurança em qualquer lugar.</p>
+                            <a href="#modulos" class="bg-white text-blue-700 font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-100 transition-all transform hover:scale-105 self-center">
+                                Navegar com Segurança
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Slide 6: Fake News -->
+                    <div class="slide w-full flex-shrink-0">
+                        <div class="container mx-auto px-6 text-center flex flex-col justify-center h-full">
+                            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Não Caia em Fake News.</h1>
+                            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-blue-100">A desinformação se espalha rápido. Desenvolva um olhar crítico e verifique antes de compartilhar.</p>
+                            <a href="#modulos" class="bg-white text-blue-700 font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-100 transition-all transform hover:scale-105 self-center">
+                                Combater Desinformação
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botões de Navegação -->
+            <button id="prev-slide" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 p-2 rounded-full transition-colors z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left text-white"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button id="next-slide" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 p-2 rounded-full transition-colors z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right text-white"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+
+            <!-- Indicadores -->
+            <div id="slide-indicators" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+                <!-- Dots serão inseridos pelo JS -->
+            </div>
+        </section>
+
+        <!-- Seção Tema em Destaque -->
+        <section id="tema-destaque" class="py-16 md:py-24 bg-white dark:bg-slate-800">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Tema em Destaque: O Mega Vazamento da SuperLoja</h2>
+                <p class="max-w-3xl mx-auto text-slate-600 dark:text-slate-400 mb-8">
+                    Nas últimas semanas, o Brasil acompanhou o caso do vazamento de dados de milhões de clientes da SuperLoja, uma das maiores varejistas do país. Nomes, CPFs e históricos de compra foram expostos, reforçando a urgência de proteger nossas informações. Este evento destaca como nossos dados são valiosos e como a segurança digital é uma responsabilidade de todos.
+                </p>
+                <a href="https://g1.globo.com/economia/tecnologia/noticia/2021/01/28/vazamento-de-dados-de-223-milhoes-de-brasileiros-o-que-se-sabe-e-o-que-falta-saber.ghtml" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors transform hover:scale-105">
+                    Leia a reportagem completa no G1 e entenda o caso &rarr;
+                </a>
+            </div>
+        </section>
+
+
+        <!-- Seção Módulos Educacionais -->
+        <section id="modulos" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">Explore Nossos Módulos de Segurança</h2>
+                    <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400 mt-4">Conhecimento é sua melhor defesa. Escolha um tópico e fortaleça sua segurança.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col dark:shadow-none">
+                        <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 dark:text-blue-500"><path d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z"/><circle cx="16.5" cy="7.5" r=".5"/></svg></div>
+                        <h3 class="text-2xl font-bold mt-4 mb-2">Fortaleza Pessoal</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">Aprenda a criar senhas seguras, ativar a verificação em duas etapas e proteger seus dados pessoais.</p>
+                        <button data-module="pessoal" class="module-button font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 self-start">Acessar Módulo &rarr;</button>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col dark:shadow-none">
+                         <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 dark:text-blue-500"><path d="M8 11a5 5 0 1 1 5 5"/><path d="M17.7 17.7a2.5 2.5 0 1 1-3.5-3.5"/><path d="m12 18.5 4-4"/><path d="M21 21l-1.5-1.5"/></svg></div>
+                        <h3 class="text-2xl font-bold mt-4 mb-2">Detector de Ameaças</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">Treine para identificar phishing, golpes no WhatsApp e lojas falsas com nosso simulador interativo.</p>
+                        <button data-module="ameacas" class="module-button font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 self-start">Acessar Módulo &rarr;</button>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col dark:shadow-none">
+                         <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 dark:text-blue-500"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                        <h3 class="text-2xl font-bold mt-4 mb-2">Espaço Seguro</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">Saiba como agir contra o cyberbullying, proteger sua saúde mental e construir uma presença online positiva.</p>
+                        <button data-module="seguro" class="module-button font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 self-start">Acessar Módulo &rarr;</button>
+                    </div>
+                     <!-- Card 4 -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col dark:shadow-none">
+                         <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 dark:text-blue-500"><path d="M4 5V4a2 2 0 0 1 2-2h8.5L20 7.5V20a2 2 0 0 1-2 2H4"/><polyline points="14 2 14 8 20 8"/><rect width="8" height="5" x="2" y="13" rx="1"/><path d="M8 13v-2a2 2 0 1 0-4 0v2"/></svg></div>
+                        <h3 class="text-2xl font-bold mt-4 mb-2">Privacidade de Dados</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">Entenda a LGPD, saiba quais dados as empresas coletam e aprenda a gerenciar as permissões dos seus aplicativos.</p>
+                        <button data-module="privacidade" class="module-button font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 self-start">Acessar Módulo &rarr;</button>
+                    </div>
+                     <!-- Card 5 -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col dark:shadow-none">
+                         <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 dark:text-blue-500"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" x2="12.01" y1="20" y2="20"/></svg></div>
+                        <h3 class="text-2xl font-bold mt-4 mb-2">Segurança em Wi-Fi</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">Descubra os perigos das redes Wi-Fi públicas e aprenda a se proteger de ataques usando VPNs e outras boas práticas.</p>
+                        <button data-module="wifi" class="module-button font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 self-start">Acessar Módulo &rarr;</button>
+                    </div>
+                     <!-- Card 6 -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col dark:shadow-none">
+                         <div class="flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 dark:text-blue-500"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h4"/><path d="M4 9h16"/><path d="M4 15h16"/><path d="M14 13h2"/><path d="M14 19h2"/><path d="M14 7h2"/></svg></div>
+                        <h3 class="text-2xl font-bold mt-4 mb-2">Fake News & Mídia</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">Desenvolva o pensamento crítico para identificar notícias falsas, checar fontes e não cair em armadilhas de desinformação.</p>
+                        <button data-module="fakenews" class="module-button font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 self-start">Acessar Módulo &rarr;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Artigos -->
+        <section id="artigos" class="py-16 md:py-24 bg-white dark:bg-slate-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">Artigos e Publicações da Equipe</h2>
+                    <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400 mt-4">Aprofunde seu conhecimento com artigos escritos por nossa equipe de especialistas.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Artigo 1 Placeholder -->
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-6 rounded-xl border-2 border-dashed dark:border-slate-700 flex flex-col">
+                        <div class="w-full h-40 bg-slate-200 dark:bg-slate-600 rounded-lg animate-pulse mb-4"></div>
+                        <h3 class="text-xl font-bold mb-2">Título do Artigo Aqui</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-4 flex-grow">Uma breve descrição sobre o que o artigo aborda. Este espaço está pronto para receber seu conteúdo.</p>
+                        <a href="#" class="font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 self-start">Leia Mais &rarr;</a>
+                    </div>
+                    <!-- Artigo 2 Placeholder -->
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-6 rounded-xl border-2 border-dashed dark:border-slate-700 flex flex-col">
+                        <div class="w-full h-40 bg-slate-200 dark:bg-slate-600 rounded-lg animate-pulse mb-4"></div>
+                        <h3 class="text-xl font-bold mb-2">Título do Artigo Aqui</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-4 flex-grow">Uma breve descrição sobre o que o artigo aborda. Este espaço está pronto para receber seu conteúdo.</p>
+                        <a href="#" class="font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 self-start">Leia Mais &rarr;</a>
+                    </div>
+                    <!-- Artigo 3 Placeholder -->
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-6 rounded-xl border-2 border-dashed dark:border-slate-700 flex flex-col">
+                        <div class="w-full h-40 bg-slate-200 dark:bg-slate-600 rounded-lg animate-pulse mb-4"></div>
+                        <h3 class="text-xl font-bold mb-2">Título do Artigo Aqui</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-4 flex-grow">Uma breve descrição sobre o que o artigo aborda. Este espaço está pronto para receber seu conteúdo.</p>
+                        <a href="#" class="font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 self-start">Leia Mais &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Quiz Rápido -->
+        <section id="quiz" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">Teste Seus Conhecimentos</h2>
+                    <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400 mt-4">Você consegue identificar um risco online? Responda nosso quiz rápido e descubra!</p>
+                </div>
+                <div id="quiz-container" class="max-w-2xl mx-auto bg-white dark:bg-slate-800 p-8 rounded-xl shadow-md">
+                     <!-- O conteúdo do quiz será inserido aqui pelo JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Ajuda e Denúncia -->
+        <section id="ajuda" class="py-16 md:py-24 bg-slate-900 dark:bg-black">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Precisa de Ajuda Imediata?</h2>
+                <p class="max-w-2xl mx-auto text-slate-300 mt-4 mb-10">Se você foi vítima de um crime digital, é crucial agir rápido. Utilize os canais oficiais para denúncia e suporte.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://www.safernet.org.br/denuncie" target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                        Denunciar na SaferNet Brasil
+                    </a>
+                    <a href="https://new.safernet.org.br/content/delegacias-cibercrimes" target="_blank" class="bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                        Encontrar Delegacia Cibernética
+                    </a>
+                     <a href="https://www.gov.br/pt-br/servicos/denunciar-violacao-de-direitos-humanos" target="_blank" class="bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                        Disque 100 (Direitos Humanos)
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-slate-800 dark:bg-black border-t border-slate-700 dark:border-slate-800 text-slate-400">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Guardião Digital</p>
+            <p class="text-sm">Um Projeto de Extensão do Curso de Ciência da Computação</p>
+            <div class="mt-6 pt-6 border-t border-slate-700">
+                <p class="text-sm font-semibold mb-2 text-slate-300">Alunos Responsáveis:</p>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Arthur Vinícius &bull; Augusto César &bull; Michael Domingos &bull; Carlos Joab &bull; Elton Silva &bull; Brenno José
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ========== MODAL STRUCTURE ========== -->
+    <div id="modal-container" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center p-4">
+        <div id="modal-content" class="bg-white dark:bg-slate-800 w-full max-w-3xl max-h-[90vh] rounded-2xl shadow-2xl flex flex-col transform transition-transform duration-300 scale-95">
+            <div class="p-6 border-b dark:border-slate-700 flex justify-between items-center">
+                <h3 id="modal-title" class="text-2xl font-bold"></h3>
+                <button id="modal-close-button" class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div id="modal-body" class="p-6 md:p-8 overflow-y-auto text-slate-600 dark:text-slate-400">
+                <!-- Conteúdo do Módulo será injetado aqui -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão Voltar ao Topo -->
+    <button id="back-to-top-btn" class="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 ease-out opacity-0 scale-90 pointer-events-none z-30">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Lógica do Header e Scroll ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-white/80', 'dark:bg-slate-900/80', 'backdrop-blur-sm', 'shadow-md', 'text-slate-800', 'dark:text-white');
+                    header.classList.remove('bg-transparent', 'text-white');
+                } else {
+                    header.classList.remove('bg-white/80', 'dark:bg-slate-900/80', 'backdrop-blur-sm', 'shadow-md', 'text-slate-800', 'dark:text-white');
+                    header.classList.add('bg-transparent', 'text-white');
+                }
+            });
+
+            // --- Lógica do Menu Mobile ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // --- Lógica do Tema Escuro (Dark Mode) ---
+            const htmlEl = document.documentElement;
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+
+            // Função para aplicar o tema
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    htmlEl.classList.add('dark');
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                } else {
+                    htmlEl.classList.remove('dark');
+                    sunIcon.classList.remove('hidden');
+                    moonIcon.classList.add('hidden');
+                }
+            }
+
+            // Verifica o tema salvo ou a preferência do sistema na inicialização
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            applyTheme(savedTheme);
+
+            // Listener para o botão de toggle
+            darkModeToggle.addEventListener('click', () => {
+                const currentTheme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                localStorage.setItem('theme', newTheme);
+                applyTheme(newTheme);
+            });
+
+
+            // --- Lógica do Carrossel (Hero Slider) ---
+            const sliderTrack = document.getElementById('slider-track');
+            const slides = document.querySelectorAll('.slide');
+            const prevButton = document.getElementById('prev-slide');
+            const nextButton = document.getElementById('next-slide');
+            const indicatorsContainer = document.getElementById('slide-indicators');
+            let currentSlide = 0;
+            let slideInterval;
+            const totalSlides = slides.length;
+
+            // Criar indicadores
+            slides.forEach((_, i) => {
+                const indicator = document.createElement('button');
+                indicator.classList.add('w-3', 'h-3', 'rounded-full', 'bg-white/40', 'hover:bg-white/80', 'transition-all', 'duration-300');
+                indicator.addEventListener('click', () => {
+                    showSlide(i);
+                    resetInterval();
+                });
+                indicatorsContainer.appendChild(indicator);
+            });
+            const indicators = indicatorsContainer.querySelectorAll('button');
+
+            function showSlide(index) {
+                // Lida com a volta (de 0 para o último e do último para 0)
+                if (index >= totalSlides) {
+                    index = 0;
+                } else if (index < 0) {
+                    index = totalSlides - 1;
+                }
+
+                // Move o track do slider
+                const offset = -index * 100;
+                sliderTrack.style.transform = `translateX(${offset}%)`;
+
+                // Atualiza os indicadores
+                indicators.forEach((indicator, idx) => {
+                    if (idx === index) {
+                        indicator.classList.remove('w-3', 'bg-white/40');
+                        indicator.classList.add('w-6', 'bg-white');
+                    } else {
+                        indicator.classList.remove('w-6', 'bg-white');
+                        indicator.classList.add('w-3', 'bg-white/40');
+                    }
+                });
+                
+                currentSlide = index;
+            }
+
+            function next() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prev() {
+                showSlide(currentSlide - 1);
+            }
+
+            function startInterval() {
+                slideInterval = setInterval(next, 5000);
+            }
+
+            function resetInterval() {
+                clearInterval(slideInterval);
+                startInterval();
+            }
+
+            // Event Listeners para os botões
+            nextButton.addEventListener('click', () => {
+                next();
+                resetInterval();
+            });
+            prevButton.addEventListener('click', () => {
+                prev();
+                resetInterval();
+            });
+
+            // Inicia o carrossel
+            showSlide(currentSlide);
+            startInterval();
+            
+            // --- Lógica do Quiz Interativo ---
+            const quizContainer = document.getElementById('quiz-container');
+            const quizData = [
+                {
+                    question: "Você recebe um e-mail do seu banco pedindo para clicar em um link e confirmar seus dados urgentemente. O que você faz?",
+                    options: ["Clico no link, pois é do meu banco.", "Ignoro o e-mail.", "Acesso o site do banco digitando o endereço no navegador para verificar.", "Respondo o e-mail com meus dados."],
+                    correct: 2
+                },
+                {
+                    question: "Qual das senhas abaixo é a mais segura?",
+                    options: ["123456", "senhaforte", "G@by&2025!", "JoaoSilva1990"],
+                    correct: 2
+                },
+                {
+                    question: "Um amigo te envia uma mensagem no WhatsApp com um link para uma promoção imperdível. O que é mais seguro fazer?",
+                    options: ["Clicar imediatamente para não perder.", "Perguntar ao amigo se foi ele mesmo quem enviou o link.", "Compartilhar com outros amigos.", "Ignorar a mensagem."],
+                    correct: 1
+                },
+                {
+                    question: "Ao instalar um novo app de lanterna, ele pede acesso aos seus contatos e microfone. O que você deve fazer?",
+                    options: ["Aceitar, pois todos os apps pedem isso.", "Negar as permissões, pois não são necessárias para a função do app.", "Instalar e depois remover as permissões.", "Procurar outro app de lanterna."],
+                    correct: 1
+                },
+                {
+                    question: "Qual a maneira mais segura de usar uma rede Wi-Fi pública (de aeroportos, cafés, etc.)?",
+                    options: ["Acessando apenas sites com HTTPS.", "Usando uma VPN para criptografar sua conexão.", "Conectando-se rapidamente e desconectando logo em seguida.", "Evitando fazer login em qualquer conta."],
+                    correct: 1
+                },
+                {
+                    question: "Você lê uma notícia bombástica com uma manchete chocante em uma rede social. Qual o primeiro passo antes de compartilhar?",
+                    options: ["Compartilhar imediatamente para alertar a todos.", "Verificar se a notícia foi publicada em veículos de imprensa conhecidos e confiáveis.", "Ler apenas os comentários para ver o que os outros estão dizendo.", "Acreditar na notícia se ela vier de um amigo ou familiar."],
+                    correct: 1
+                }
+            ];
+
+            let currentQuestionIndex = 0;
+            let score = 0;
+
+            function loadQuiz() {
+                if (currentQuestionIndex < quizData.length) {
+                    const currentQuiz = quizData[currentQuestionIndex];
+                    quizContainer.innerHTML = `
+                        <p class="text-lg font-semibold mb-1">Pergunta ${currentQuestionIndex + 1}/${quizData.length}</p>
+                        <h4 class="text-xl font-bold mb-6">${currentQuiz.question}</h4>
+                        <div id="options-container" class="space-y-3">
+                            ${currentQuiz.options.map((option, index) => `
+                                <button class="w-full text-left p-4 bg-white dark:bg-slate-600 rounded-lg hover:bg-blue-100 dark:hover:bg-slate-500 border-2 border-transparent transition-all" data-index="${index}">
+                                    ${option}
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div id="feedback-container" class="mt-4 text-center font-semibold"></div>
+                    `;
+                    
+                    document.querySelectorAll('#options-container button').forEach(button => {
+                        button.addEventListener('click', handleAnswer);
+                    });
+                } else {
+                    showResults();
+                }
+            }
+            
+            function handleAnswer(e) {
+                const selectedIndex = parseInt(e.target.dataset.index);
+                const correctIndex = quizData[currentQuestionIndex].correct;
+                const optionsButtons = document.querySelectorAll('#options-container button');
+                const feedbackContainer = document.getElementById('feedback-container');
+
+                optionsButtons.forEach(btn => btn.disabled = true);
+
+                if (selectedIndex === correctIndex) {
+                    score++;
+                    e.target.classList.add('bg-green-200', 'border-green-500', 'dark:bg-green-500/30', 'dark:border-green-500');
+                    feedbackContainer.innerHTML = `<p class="text-green-600 dark:text-green-400">Resposta Correta!</p>`;
+                } else {
+                    e.target.classList.add('bg-red-200', 'border-red-500', 'dark:bg-red-500/30', 'dark:border-red-500');
+                    optionsButtons[correctIndex].classList.add('bg-green-200', 'border-green-500', 'dark:bg-green-500/30', 'dark:border-green-500');
+                    feedbackContainer.innerHTML = `<p class="text-red-600 dark:text-red-400">Resposta Incorreta!</p>`;
+                }
+
+                currentQuestionIndex++;
+                setTimeout(loadQuiz, 2000);
+            }
+            
+            function showResults() {
+                let message = "";
+                if (score === quizData.length) {
+                    message = "Parabéns! Você é um verdadeiro Guardião Digital. Continue se atualizando!";
+                } else if (score >= quizData.length / 2) {
+                    message = "Muito bom! Você está no caminho certo. Explore nossos módulos para aprender ainda mais.";
+                } else {
+                    message = "Parece que há alguns pontos a melhorar. Nossos módulos foram feitos para você! Comece pelo 'Detector de Ameaças'.";
+                }
+
+                quizContainer.innerHTML = `
+                    <h4 class="text-2xl font-bold mb-4 text-center">Quiz Finalizado!</h4>
+                    <p class="text-center text-lg mb-6">Você acertou ${score} de ${quizData.length} perguntas.</p>
+                    <p class="text-center text-slate-700 dark:text-slate-300 mb-8">${message}</p>
+                    <button id="restart-quiz" class="mx-auto block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-colors">
+                        Tentar Novamente
+                    </button>
+                `;
+                
+                document.getElementById('restart-quiz').addEventListener('click', () => {
+                    currentQuestionIndex = 0;
+                    score = 0;
+                    loadQuiz();
+                });
+            }
+
+            // Inicia o Quiz
+            loadQuiz();
+            
+            // --- Lógica do Modal ---
+            const modalContainer = document.getElementById('modal-container');
+            const modalContent = document.getElementById('modal-content');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const modalCloseButton = document.getElementById('modal-close-button');
+            const moduleButtons = document.querySelectorAll('.module-button');
+
+            const modulesContent = {
+                pessoal: {
+                    title: 'Módulo: Fortaleza Pessoal',
+                    content: `
+                        <div class="space-y-8">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-3">1. Crie Senhas Inquebráveis</h4>
+                                <p class="mb-4">Uma senha forte é sua primeira linha de defesa. Evite sequências óbvias e dados pessoais. Use uma combinação de letras maiúsculas, minúsculas, números e símbolos.</p>
+                                <div class="bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                                    <label for="password-check" class="font-semibold text-slate-800 dark:text-slate-200">Teste a força da sua senha:</label>
+                                    <input type="text" id="password-check" class="w-full p-2 border rounded mt-2 dark:bg-slate-600 dark:border-slate-500" placeholder="Digite uma senha para testar">
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2 dark:bg-slate-600">
+                                        <div id="password-strength-bar" class="bg-red-600 h-2.5 rounded-full" style="width: 0%"></div>
+                                    </div>
+                                    <p id="password-strength-text" class="text-sm font-semibold mt-1 text-red-600">Muito Fraca</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-3">2. Ative a Verificação em Duas Etapas (2FA)</h4>
+                                <p>A 2FA adiciona uma camada extra de segurança, exigindo um segundo código (geralmente do seu celular) para fazer login. Ative em todas as suas contas importantes!</p>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    <a href="https://www.google.com/landing/2step/" target="_blank" class="bg-gray-200 dark:bg-slate-600 text-sm font-semibold px-3 py-1 rounded-full hover:bg-gray-300 dark:hover:bg-slate-500">Guia para Google</a>
+                                    <a href="https://help.instagram.com/566810106808145" target="_blank" class="bg-gray-200 dark:bg-slate-600 text-sm font-semibold px-3 py-1 rounded-full hover:bg-gray-300 dark:hover:bg-slate-500">Guia para Instagram</a>
+                                    <a href="https://faq.whatsapp.com/1131652937533315/" target="_blank" class="bg-gray-200 dark:bg-slate-600 text-sm font-semibold px-3 py-1 rounded-full hover:bg-gray-300 dark:hover:bg-slate-500">Guia para WhatsApp</a>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                ameacas: {
+                    title: 'Módulo: Detector de Ameaças',
+                    content: `
+                        <div class="space-y-8">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-3">1. O que é Phishing?</h4>
+                                <p>Phishing é uma tentativa de enganá-lo para que você revele informações pessoais, como senhas ou números de cartão de crédito, em sites falsos que se parecem com os verdadeiros. Fique atento a erros de ortografia, senso de urgência e remetentes suspeitos.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-3">2. Mini-Simulador: Você consegue identificar os riscos?</h4>
+                                <p class="mb-4">Recebeu este SMS. Clique nas áreas da imagem que parecem suspeitas para revelar por que são perigosas.</p>
+                                <div class="relative bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                                    <img src="https://i.imgur.com/7g4s3y3.png" alt="Exemplo de SMS de phishing" class="w-full rounded-md">
+                                    <div class="modal-phishing-hotspot" style="top: 25px; left: 145px; width: 80px; height: 30px;" onclick="showPhishingTip(this, 'Erro de Ortografia', 'Empresas sérias raramente cometem erros de digitação. \\'NETFLlX\\' com \\'L\\' no lugar de \\'I\\' é um grande sinal de fraude.')"></div>
+                                    <div class="modal-phishing-hotspot" style="top: 80px; left: 320px; width: 220px; height: 30px;" onclick="showPhishingTip(this, 'Link Encurtado/Suspeito', 'Golpistas usam encurtadores de link (bit.ly, etc.) para esconder o endereço real do site malicioso. Nunca clique sem saber para onde vai!')"></div>
+                                    <div class="modal-phishing-hotspot" style="top: 80px; left: 25px; width: 280px; height: 30px;" onclick="showPhishingTip(this, 'Ameaça e Senso de Urgência', 'A ameaça de \\'multa\\' cria pânico para que você aja por impulso, sem pensar. Empresas não costumam usar esse tipo de ameaça.')"></div>
+                                    <div id="phishing-tip" class="hidden absolute bg-slate-800 text-white p-3 rounded-lg text-sm shadow-xl z-10"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                seguro: {
+                    title: 'Módulo: Espaço Seguro',
+                    content: `
+                         <div class="space-y-8">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-3">1. O que é Cyberbullying?</h4>
+                                <p>É o uso da tecnologia para assediar, ameaçar, constranger ou humilhar alguém. Pode incluir o compartilhamento de informações privadas, espalhar boatos ou criar perfis falsos. Lembre-se: uma crítica construtiva é diferente de um ataque pessoal.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-3">2. Guia de Ação Rápida: O que fazer?</h4>
+                                <ul class="list-disc list-inside space-y-2 bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                                    <li><span class="font-semibold">Não Responda:</span> Não dê ao agressor a reação que ele espera.</li>
+                                    <li><span class="font-semibold">Tire Print (Captura de Tela):</span> Guarde todas as evidências. Elas são cruciais para uma denúncia.</li>
+                                    <li><span class="font-semibold">Bloqueie e Denuncie:</span> Use as ferramentas da própria plataforma para bloquear o agressor e denunciar o conteúdo.</li>
+                                    <li><span class="font-semibold">Converse com Alguém:</span> Fale com seus pais, amigos de confiança ou um profissional. Você não está sozinho.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `
+                },
+                privacidade: {
+                    title: 'Módulo: Privacidade de Dados',
+                    content: `
+                         <div class="space-y-8">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-3">1. Entendendo a LGPD (Lei Geral de Proteção de Dados)</h4>
+                                <p>A LGPD é uma lei brasileira que garante a você mais controle sobre seus dados pessoais. Ela exige que as empresas sejam transparentes sobre como coletam, usam e protegem suas informações. Você tem o direito de saber quais dados uma empresa tem sobre você e pedir a exclusão deles.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-3">2. Permissões de Aplicativos: O que você está compartilhando?</h4>
+                                <p class="mb-2">Muitos aplicativos pedem acesso a mais dados do que precisam. Um app de jogo realmente precisa da sua lista de contatos? Um editor de fotos precisa do seu microfone?</p>
+                                <ul class="list-disc list-inside space-y-2 bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                                    <li><span class="font-semibold">Localização:</span> Útil para mapas, mas um app de calculadora não precisa saber onde você está.</li>
+                                    <li><span class="font-semibold">Contatos:</span> Apenas para apps que precisam sincronizar amigos. Cuidado com apps que podem enviar spam para sua lista.</li>
+                                    <li><span class="font-semibold">Microfone/Câmera:</span> Essencial para chamadas de vídeo, mas suspeito para um app de lanterna.</li>
+                                </ul>
+                                <p class="mt-3 text-sm italic">Revise periodicamente as permissões de seus aplicativos nas configurações do seu celular.</p>
+                            </div>
+                        </div>
+                    `
+                },
+                wifi: {
+                    title: 'Módulo: Segurança em Wi-Fi Público',
+                    content: `
+                         <div class="space-y-8">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-3">1. Os Riscos Ocultos do Wi-Fi Grátis</h4>
+                                <p>Redes Wi-Fi abertas (em aeroportos, cafés, praças) são convenientes, mas perigosas. Criminosos podem criar redes falsas com nomes parecidos (ex: "Café_Gratis" em vez de "Cafe_Oficial") para interceptar tudo o que você faz online, incluindo senhas e dados bancários. Isso é chamado de ataque "Man-in-the-Middle".</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-3">2. Como se Proteger?</h4>
+                                <ul class="list-disc list-inside space-y-3 bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                                    <li><span class="font-semibold">Use uma VPN (Rede Privada Virtual):</span> Uma VPN cria um "túnel" criptografado para sua conexão, tornando seus dados ilegíveis para qualquer espião na rede. É a proteção mais eficaz.</li>
+                                    <li><span class="font-semibold">Verifique se os sites usam HTTPS:</span> Procure pelo cadeado na barra de endereço do navegador. Ele indica que sua conexão com AQUELE site é segura, mas não protege você de outros perigos na rede.</li>
+                                    <li><span class="font-semibold">Evite atividades sensíveis:</span> Não acesse seu banco nem faça compras online em redes públicas, mesmo com HTTPS.</li>
+                                    <li><span class="font-semibold">Desative o compartilhamento de arquivos</span> e mantenha seu firewall ativado.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `
+                },
+                fakenews: {
+                    title: 'Módulo: Fake News e Desinformação',
+                    content: `
+                         <div class="space-y-8">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-3">1. O que são Fake News?</h4>
+                                <p>São notícias falsas criadas intencionalmente para enganar, manipular a opinião pública, causar pânico ou obter ganhos financeiros. Elas geralmente apelam para o emocional, com manchetes chocantes e conteúdo alarmista para incentivar o compartilhamento rápido e impensado.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-3">2. Checklist de Verificação em 5 Passos</h4>
+                                <ol class="list-decimal list-inside space-y-2 bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                                    <li><span class="font-semibold">Leia a notícia inteira, não apenas a manchete.</span></li>
+                                    <li><span class="font-semibold">Verifique a fonte.</span> É um site de notícias conhecido e com credibilidade?</li>
+                                    <li><span class="font-semibold">Procure a mesma notícia em outros veículos de imprensa.</span></li>
+                                    <li><span class="font-semibold">Confira a data da publicação.</span> Notícias antigas são frequentemente tiradas de contexto.</li>
+                                    <li><span class="font-semibold">Desconfie de áudios e imagens.</span> Eles podem ser facilmente editados ou manipulados.</li>
+                                </ol>
+                                <p class="mt-3 text-sm italic">Na dúvida, não compartilhe!</p>
+                            </div>
+                        </div>
+                    `
+                }
+            };
+
+            function openModal(moduleName) {
+                const moduleData = modulesContent[moduleName];
+                if (!moduleData) return;
+
+                modalTitle.textContent = moduleData.title;
+                modalBody.innerHTML = moduleData.content;
+                modalContainer.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+                
+                setTimeout(() => modalContent.classList.remove('scale-95'), 50);
+
+                if (moduleName === 'pessoal') {
+                    setupPasswordChecker();
+                }
+            }
+            
+            function closeModal() {
+                modalContent.classList.add('scale-95');
+                setTimeout(() => {
+                    modalContainer.classList.add('hidden');
+                    document.body.classList.remove('overflow-hidden');
+                }, 300);
+            }
+
+            moduleButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    openModal(button.dataset.module);
+                });
+            });
+
+            modalCloseButton.addEventListener('click', closeModal);
+            modalContainer.addEventListener('click', (e) => {
+                if (e.target === modalContainer) {
+                    closeModal();
+                }
+            });
+            
+            function setupPasswordChecker() {
+                const passwordInput = document.getElementById('password-check');
+                const strengthBar = document.getElementById('password-strength-bar');
+                const strengthText = document.getElementById('password-strength-text');
+
+                passwordInput.addEventListener('input', () => {
+                    const pass = passwordInput.value;
+                    let score = 0;
+                    if (pass.length > 8) score++;
+                    if (pass.match(/[a-z]/)) score++;
+                    if (pass.match(/[A-Z]/)) score++;
+                    if (pass.match(/[0-9]/)) score++;
+                    if (pass.match(/[^a-zA-Z0-9]/)) score++;
+
+                    const width = (score / 5) * 100;
+                    strengthBar.style.width = `${width}%`;
+
+                    switch(score) {
+                        case 0:
+                        case 1:
+                            strengthBar.className = 'bg-red-600 h-2.5 rounded-full';
+                            strengthText.className = 'text-sm font-semibold mt-1 text-red-600';
+                            strengthText.textContent = 'Muito Fraca';
+                            break;
+                        case 2:
+                            strengthBar.className = 'bg-orange-500 h-2.5 rounded-full';
+                            strengthText.className = 'text-sm font-semibold mt-1 text-orange-500';
+                            strengthText.textContent = 'Fraca';
+                            break;
+                        case 3:
+                            strengthBar.className = 'bg-yellow-500 h-2.5 rounded-full';
+                            strengthText.className = 'text-sm font-semibold mt-1 text-yellow-500';
+                            strengthText.textContent = 'Média';
+                            break;
+                        case 4:
+                            strengthBar.className = 'bg-blue-500 h-2.5 rounded-full';
+                            strengthText.className = 'text-sm font-semibold mt-1 text-blue-500';
+                            strengthText.textContent = 'Forte';
+                            break;
+                        case 5:
+                            strengthBar.className = 'bg-green-600 h-2.5 rounded-full';
+                            strengthText.className = 'text-sm font-semibold mt-1 text-green-600';
+                            strengthText.textContent = 'Muito Forte';
+                            break;
+                    }
+                });
+            }
+
+            // --- Lógica do Botão Voltar ao Topo ---
+            const backToTopBtn = document.getElementById('back-to-top-btn');
+            const triggerSection = document.getElementById('tema-destaque');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > triggerSection.offsetTop) {
+                    backToTopBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+                } else {
+                    backToTopBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+        });
+        
+        function showPhishingTip(element, title, text) {
+            const tip = document.getElementById('phishing-tip');
+            tip.innerHTML = `<strong class="block">${title}</strong>${text}`;
+            
+            const rect = element.getBoundingClientRect();
+            const containerRect = element.parentElement.getBoundingClientRect();
+            tip.style.left = `${rect.left - containerRect.left}px`;
+            tip.style.top = `${rect.bottom - containerRect.top + 5}px`;
+            
+            tip.classList.remove('hidden');
+
+            setTimeout(() => {
+                document.addEventListener('click', () => tip.classList.add('hidden'), { once: true });
+            }, 100);
+        }
+
+    </script>
+
+</body>
+</html>
+
